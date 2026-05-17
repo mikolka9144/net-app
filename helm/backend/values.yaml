@@ -1,0 +1,11 @@
+replicaCount: 1
+service:
+  type: ClusterIP
+  port: 8080
+secrets:
+  data:
+    POSTGRES_PASSWORD: ok
+configMap:
+  data:
+    POSTGRES_DATABASE: 
+    POSTGRES_HOST: 

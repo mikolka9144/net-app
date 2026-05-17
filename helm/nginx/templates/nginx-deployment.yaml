@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-deployment
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-deployment
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-deployment
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          volumeMounts:
+            - name: {{ .Release.Name }}-configmap-volume
+              mountPath: /etc/nginx/conf.d
+            - name: ssl-certificates
+              mountPath: /etc/nginx/ssl
+              readOnly: true
+      volumes:
+        - name: {{ .Release.Name }}-configmap-volume
+          configMap:
+            name: {{ .Release.Name }}-configmap
+        - name: ssl-certificates
+          secret:
+            secretName: {{ .Values.secret.name }}

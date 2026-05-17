@@ -1,0 +1,5 @@
+.directory
+node_modules
+./test
+package-lock.json
+Dockerfile

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app: {{ .Release.Name }}-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-deployment
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-deployment
+    spec:
+      serviceAccountName: {{ .Release.Name }}-sa
+      volumes:
+      - name: audit-data
+        persistentVolumeClaim:
+          claimName: data-backend-dev-logs-0
+      containers:
+      - name: {{ .Release.Name }}-deployment
+        image: "ghcr.io/mikolka9144/net-app-backend:main"
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        - secretRef:
+            name: {{ .Release.Name }}-secret
+        env:
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-db-secret
+              key: password
+        volumeMounts:
+        - mountPath: /var/log/l2b2/audit
+          name: audit-data
+        ports:
+        - containerPort: 8080
