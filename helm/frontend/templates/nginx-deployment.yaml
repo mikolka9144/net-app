@@ -18,16 +18,4 @@ spec:
       containers:
         - name: {{ .Release.Name }}-deployment
           image: "ghcr.io/mikolka9144/net-app/instance-frontend:master"
-          volumeMounts:
-            - name: {{ .Release.Name }}-configmap-volume
-              mountPath: /etc/nginx/conf.d
-            - name: ssl-certificates
-              mountPath: /etc/nginx/ssl
-              readOnly: true
-      volumes:
-        - name: {{ .Release.Name }}-configmap-volume
-          configMap:
-            name: {{ .Release.Name }}-configmap
-        - name: ssl-certificates
-          secret:
-            secretName: {{ .Values.secret.name }}
+          imagePullPolicy: Always

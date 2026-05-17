@@ -1,4 +1,7 @@
 replicaCount: 1
+namespace: cloud
 service:
   type: ClusterIP
   port: 80
+configMap:
+  data:

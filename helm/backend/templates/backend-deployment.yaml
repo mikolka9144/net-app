@@ -14,20 +14,14 @@ spec:
       labels:
         app: {{ .Release.Name }}-deployment
     spec:
-      serviceAccountName: {{ .Release.Name }}-sa
       containers:
       - name: {{ .Release.Name }}-deployment
         image: "ghcr.io/mikolka9144/net-app/instance-backend:master"
+        imagePullPolicy: Always
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap
         - secretRef:
             name: {{ .Release.Name }}-secret
-        env:
-        - name: SPRING_DATASOURCE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Release.Name }}-db-secret
-              key: password
         ports:
         - containerPort: 8080

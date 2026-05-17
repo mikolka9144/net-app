@@ -10,3 +10,4 @@ configMap:
     POSTGRES_DATABASE: app-data
     POSTGRES_USER: instance-app
     POSTGRES_HOST: postgresql
+    REDIS_URL: redis://instance-redis-master:6379

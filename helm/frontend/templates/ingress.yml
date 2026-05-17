@@ -12,9 +12,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
     nginx.ingress.kubernetes.io/proxy-body-size: "100m"
 spec:
-    ingressClassName: nginx
-    DefaultBackend:
-      service:
-        name: {{ .Release.Name }}-service
-        port:
-          number: 80
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: {{ .Release.Name }}-service
+      port:
+        number: 80
