@@ -1,7 +1,7 @@
 
 auth:
-  username: admin
-  database: l2b2-platform
+  username: instance-app
+  database: app-data
   existingSecret: "postgresql-credentials"
 primary:
   persistence:

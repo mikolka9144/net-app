@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: {{ .Release.Name }}-deployment
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "ghcr.io/mikolka9144/net-app/instance-frontend:master"
           volumeMounts:
             - name: {{ .Release.Name }}-configmap-volume
               mountPath: /etc/nginx/conf.d

@@ -4,8 +4,9 @@ service:
   port: 8080
 secrets:
   data:
-    POSTGRES_PASSWORD: ok
+    POSTGRES_PASSWORD: cG9zdGdyZXMtcGFzc3dvcmQK
 configMap:
   data:
-    POSTGRES_DATABASE: 
-    POSTGRES_HOST: 
+    POSTGRES_DATABASE: app-data
+    POSTGRES_USER: instance-app
+    POSTGRES_HOST: postgresql

@@ -4,7 +4,7 @@ const { createClient } = require('redis');
 
 // PostgreSQL
 const pgPool = new Pool({
-    user: 'your_username',      // PostgreSQL username
+  user: process.env.POSTGRES_USER || 'app-client',      // PostgreSQL username
   host: process.env.POSTGRES_HOST || 'localhost',           // Database host
   database: process.env.POSTGRES_DATABASE || 'postgres',   // Database name
   password: process.env.POSTGRES_PASSWORD || "postgres",   // PostgreSQL password

@@ -15,13 +15,9 @@ spec:
         app: {{ .Release.Name }}-deployment
     spec:
       serviceAccountName: {{ .Release.Name }}-sa
-      volumes:
-      - name: audit-data
-        persistentVolumeClaim:
-          claimName: data-backend-dev-logs-0
       containers:
       - name: {{ .Release.Name }}-deployment
-        image: "ghcr.io/mikolka9144/net-app-backend:main"
+        image: "ghcr.io/mikolka9144/net-app/instance-backend:master"
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-configmap
@@ -33,8 +29,5 @@ spec:
             secretKeyRef:
               name: {{ .Release.Name }}-db-secret
               key: password
-        volumeMounts:
-        - mountPath: /var/log/l2b2/audit
-          name: audit-data
         ports:
         - containerPort: 8080
