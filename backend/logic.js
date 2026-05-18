@@ -9,7 +9,6 @@ const pgPool = new Pool({
   database: process.env.POSTGRES_DATABASE || 'postgres',   // Database name
   password: process.env.POSTGRES_PASSWORD || "postgres",   // PostgreSQL password
   port: 5432,                  // PostgreSQL default port
-  connectionString: process.env.POSTGRES_URL || "postgres://postgres:postgres@172.19.0.4:5432/postgres"
 });
 
 // Redis
