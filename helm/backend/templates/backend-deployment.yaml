@@ -24,4 +24,5 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-secret
         ports:
-        - containerPort: 8080
+        - containerPort: 4000
+        

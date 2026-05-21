@@ -2,7 +2,7 @@
 auth:
   username: instance-app
   database: app-data
-  existingSecret: "postgresql-credentials"
+  existingSecret: postgresql-credentials
 primary:
   persistence:
     enabled: true

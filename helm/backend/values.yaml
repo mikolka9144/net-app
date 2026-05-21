@@ -4,10 +4,10 @@ service:
   port: 8080
 secrets:
   data:
-    POSTGRES_PASSWORD: cG9zdGdyZXMtcGFzc3dvcmQK
+    POSTGRES_PASSWORD: cGFzc3dvcmQ=
 configMap:
   data:
     POSTGRES_DATABASE: app-data
-    POSTGRES_USER: instance-app
+    POSTGRES_USER: admin
     POSTGRES_HOST: postgresql
     REDIS_URL: redis://instance-redis-master:6379

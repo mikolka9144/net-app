@@ -19,3 +19,14 @@ spec:
         - name: {{ .Release.Name }}-deployment
           image: "ghcr.io/mikolka9144/net-app/instance-frontend:master"
           imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - name: ssl-certificates
+              mountPath: /etc/nginx/ssl
+              readOnly: true
+      volumes:
+        - name: ssl-certificates
+          secret:
+            secretName: tls-frontend
+          
