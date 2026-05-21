@@ -25,4 +25,16 @@ spec:
             name: {{ .Release.Name }}-secret
         ports:
         - containerPort: {{ .Values.service.port }}
-        
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.service.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.service.port }}
+          periodSeconds: 5

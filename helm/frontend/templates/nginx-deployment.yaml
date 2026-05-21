@@ -25,6 +25,19 @@ spec:
             - name: ssl-certificates
               mountPath: /etc/nginx/ssl
               readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            periodSeconds: 5
       volumes:
         - name: ssl-certificates
           secret:
