@@ -1,12 +1,13 @@
 replicaCount: 1
 service:
   type: ClusterIP
-  port: 8080
+  port: 80
 secrets:
   data:
     POSTGRES_PASSWORD: cGFzc3dvcmQ=
 configMap:
   data:
+    PORT: 80
     POSTGRES_DATABASE: app-data
     POSTGRES_USER: admin
     POSTGRES_HOST: postgresql
