@@ -10,3 +10,5 @@ primary:
 global:
   replica:
     replicaCount: 0
+auth:
+  password: "di3c4OWSEW"

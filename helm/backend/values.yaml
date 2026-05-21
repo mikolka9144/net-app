@@ -5,6 +5,7 @@ service:
 secrets:
   data:
     POSTGRES_PASSWORD: cGFzc3dvcmQ=
+    REDIS_PASSWORD: ZGkzYzRPV1NFVw==
 configMap:
   data:
     PORT: 80

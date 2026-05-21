@@ -26,6 +26,7 @@ const redis = createClient({
     console.log(`Retry attempt ${times}, next in ${delay}ms`);
     return delay;
   },
+  password: process.env.REDIS_PASSWORD || "",
   maxRetriesPerRequest: 3,
   connectTimeout: 5000,         
   commandTimeout: 2000,          
