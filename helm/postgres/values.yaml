@@ -1,17 +1,4 @@
-
 auth:
-  username: instance-app
+  username: postgres
   database: app-data
   existingSecret: postgresql-credentials
-primary:
-  persistence:
-    enabled: true
-    storageClass: standard
-    size: 2Gi
-  resources:
-    requests:
-      memory: 512Mi
-      cpu: 250m
-    limits:
-      memory: 1Gi
-      cpu: 1000m

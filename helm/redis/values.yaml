@@ -1,4 +1,3 @@
-
 primary:
   resources:
     requests:
@@ -6,9 +5,7 @@ primary:
       cpu: 250m
     limits:
       memory: 1Gi
-      cpu: 1000m
+      cpu: 512m
 global:
   replica:
     replicaCount: 0
-auth:
-  password: "di3c4OWSEW"

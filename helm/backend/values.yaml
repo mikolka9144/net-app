@@ -2,14 +2,11 @@ replicaCount: 1
 service:
   type: ClusterIP
   port: 80
-secrets:
-  data:
-    POSTGRES_PASSWORD: cGFzc3dvcmQ=
-    REDIS_PASSWORD: ZGkzYzRPV1NFVw==
-configMap:
-  data:
-    PORT: 80
-    POSTGRES_DATABASE: app-data
-    POSTGRES_USER: admin
-    POSTGRES_HOST: postgresql
-    REDIS_URL: redis://instance-redis-master:6379
+primary:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 250m
+    limits:
+      memory: 512Mi
+      cpu: 512m

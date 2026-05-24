@@ -21,6 +21,9 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 80
+          securityContext:
+            runAsUser: 101 # "nginx" user in the image
+            runAsGroup: 101 # "nginx" group in the image
           volumeMounts:
             - name: ssl-certificates
               mountPath: /etc/nginx/ssl
@@ -29,6 +32,7 @@ spec:
             httpGet:
               path: /health
               port: 80
+              scheme: HTTPS
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 3
@@ -37,6 +41,7 @@ spec:
             httpGet:
               path: /health
               port: 80
+              scheme: HTTPS
             periodSeconds: 5
       volumes:
         - name: ssl-certificates

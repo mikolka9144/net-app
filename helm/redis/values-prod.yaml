@@ -1,0 +1,4 @@
+global:
+  namespaceOverride: "cloud-prod"
+auth:
+  password: "di3c4OWSEW"

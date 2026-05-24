@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-deployment
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Release.Name }}-deployment
 spec:
@@ -23,6 +24,9 @@ spec:
             name: {{ .Release.Name }}-configmap
         - secretRef:
             name: {{ .Release.Name }}-secret
+        securityContext:
+          runAsUser: 100 # "backend" user in the image
+          runAsGroup: 101 # "backend" group in the image
         ports:
         - containerPort: {{ .Values.service.port }}
         livenessProbe:
@@ -38,3 +42,13 @@ spec:
             path: /health
             port: {{ .Values.service.port }}
           periodSeconds: 5
+      initContainers:
+      - name: init-example
+        image: registry-1.docker.io/bitnami/postgresql:latest
+        command: ['sh', '-c', " PGPASSWORD=\"${POSTGRES_PASSWORD}\" psql -h \"${POSTGRES_HOST}\" -p \"${POSTGRES_PORT:-5432}\" -U \"${POSTGRES_USER}\" -d \"${POSTGRES_DATABASE}\" -v ON_ERROR_STOP=1 -c \"${SQL_INIT_COMMAND}\""]
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-configmap
+        - secretRef:
+            name: {{ .Release.Name }}-secret
+
