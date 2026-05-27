@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: deployment-manager
-  namespace: cloud
+  namespace: cloud-prod
 rules:
 - apiGroups: ["apps"]
   resources: ["deployments"]
@@ -15,4 +15,7 @@ rules:
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 - apiGroups: ["batch"]
   resources: ["jobs", "cronjobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingress"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]

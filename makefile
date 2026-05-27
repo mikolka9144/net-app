@@ -18,7 +18,7 @@ helm-prod:
 	$(HELM) upgrade --install instance-frontend ./helm/frontend -f ./helm/frontend/values.yaml -f ./helm/frontend/values-prod.yaml
 
 cicd:
-	$(KUBECTL) config set-context --current --namespace=cloud
+	$(KUBECTL) config set-context --current --namespace=cloud-prod
 	$(KUBECTL) create serviceaccount github-robot
 	$(KUBECTL) apply -f ./k8s/serviceaccount/role.yaml
 	$(KUBECTL) apply -f ./k8s/serviceaccount/rolebinding.yaml

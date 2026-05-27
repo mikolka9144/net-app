@@ -2,11 +2,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: github-robot-binding
-  namespace: cloud
+  namespace: cloud-prod
 subjects:
 - kind: ServiceAccount
   name: github-robot
-  namespace: cloud
+  namespace: cloud-prod
 roleRef:
   kind: Role
   name: deployment-manager

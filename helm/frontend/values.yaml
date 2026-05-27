@@ -1,4 +1,5 @@
-ingressClass: gce
+ingressClass: nginx
+ingress_frontendPort: 443
 service:
   type: ClusterIP
   port: 80

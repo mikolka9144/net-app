@@ -73,6 +73,6 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
       - name: Deploy the Helm chart
         run: |
-          helm upgrade --install instance-backend ./helm/backend -f ./helm/backend/values.yaml -f ./helm/backend/values-dev.yaml
+          helm upgrade --install instance-backend ./helm/backend -f ./helm/backend/values.yaml -f ./helm/backend/values-prod.yaml
       - name: Restart deployment
         run: kubectl rollout restart deployment instance-backend-deployment
