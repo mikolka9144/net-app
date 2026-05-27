@@ -20,7 +20,7 @@ spec:
           image: "ghcr.io/mikolka9144/net-app/instance-frontend:master"
           imagePullPolicy: Always
           ports:
-          - containerPort: 80
+          - containerPort: {{ .Values.ingress_frontendPort }}
           securityContext:
             runAsUser: 101 # "nginx" user in the image
             runAsGroup: 101 # "nginx" group in the image
@@ -31,8 +31,8 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: 80
-              scheme: HTTPS
+              port: {{ .Values.ingress_frontendPort }}
+              scheme: {{ .Values.ingress_scheme }}
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 3
@@ -40,8 +40,8 @@ spec:
           readinessProbe:
             httpGet:
               path: /health
-              port: 80
-              scheme: HTTPS
+              port: {{ .Values.ingress_frontendPort }}
+              scheme: {{ .Values.ingress_scheme }}
             periodSeconds: 5
           resources:
             limits:

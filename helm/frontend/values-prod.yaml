@@ -1,6 +1,7 @@
 replicaCount: 1
 ingressClass: gce
 ingress_frontendPort: 80
+ingress_scheme: HTTP
 namespace: cloud-prod
 configMap:
   data:

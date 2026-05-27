@@ -1,5 +1,6 @@
 ingressClass: nginx
 ingress_frontendPort: 443
+ingress_scheme: HTTPS
 service:
   type: ClusterIP
   port: 80
