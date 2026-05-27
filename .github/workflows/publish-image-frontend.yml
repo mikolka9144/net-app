@@ -73,9 +73,11 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
       - name: Deploy the Helm chart
         run: |
-          helm upgrade\
-          --install\ 
-          instance-frontend ./helm/frontend\
-          -f ./helm/frontend/values.yaml\
+          helm upgrade \
+          --install \ 
+          instance-frontend ./helm/frontend \
+          -f ./helm/frontend/values.yaml \
           -f ./helm/frontend/values-dev.yaml
+      - name: Restart deployment
+        run: kubectl rollout restart deployment instance-frontend-deployment
 
