@@ -1,12 +1,13 @@
 namespace: cloud-prod
 secrets:
   data:
-    POSTGRES_PASSWORD: cGFzc3dvcmQ=
-    REDIS_PASSWORD: ZGkzYzRPV1NFVw==
+    POSTGRES_PASSWORD: Nms4STNCMERHR0dPNnZPMXBCRnFGRGM1TjNTajV5OW8=
+    REDIS_PASSWORD: U1FjQ2poQ2szR3FpVkR1aDFrdlAydkFYdzJtTFlKVnQ=
 configMap:
   data:
     PORT: 80
     POSTGRES_DATABASE: app-data
-    POSTGRES_USER: admin
+    POSTGRES_USER: postgres
     POSTGRES_HOST: postgresql
     REDIS_URL: redis://instance-redis-headless:6379
+    SQL_INIT_COMMAND: DO $$ BEGIN IF NOT EXISTS (SELECT FROM pg_database WHERE datname = 'app-data') then EXECUTE 'CREATE DATABASE \"app-data\"';  END IF; END$$;

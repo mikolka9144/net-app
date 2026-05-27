@@ -4,7 +4,7 @@
 # Cosmetics for the created config
 clusterName='some-cluster'
 # your server address goes here get it via `kubectl cluster-info`
-server='https://192.168.49.2:8443'
+server='https://34.116.180.161'
 # the Namespace and ServiceAccount name that is used for the config
 namespace='cloud'
 serviceAccount='github-robot'

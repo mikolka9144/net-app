@@ -43,6 +43,14 @@ spec:
               port: 80
               scheme: HTTPS
             periodSeconds: 5
+          resources:
+            limits:
+              ephemeral-storage: 1Gi
+              memory: 780Mi
+            requests:
+              cpu: 500m
+              ephemeral-storage: 256Mi
+              memory: 256Mi
       volumes:
         - name: ssl-certificates
           secret:

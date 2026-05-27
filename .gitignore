@@ -1,1 +1,3 @@
 node_modules
+k8s/cert/certs
+k8s/serviceaccount/perm.yaml
