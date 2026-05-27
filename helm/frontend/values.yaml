@@ -1,3 +1,4 @@
+ingressClass: gce
 service:
   type: ClusterIP
   port: 80
