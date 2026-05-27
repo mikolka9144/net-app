@@ -58,4 +58,24 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
-      
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: build-and-push-image
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+      - name: Configure Kubeconfig
+        uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+      - name: Deploy the Helm chart
+        run: |
+          helm upgrade\
+          --install\ 
+          instance-frontend ./helm/frontend\
+          -f ./helm/frontend/values.yaml\
+          -f ./helm/frontend/values-dev.yaml
+
