@@ -1,4 +1,4 @@
-.PHONY: helm helm-prod k8s k8s-prod
+.PHONY: helm helm-prod k8s k8s-prod cicd
 
 HELM=helm
 KUBECTL=kubectl

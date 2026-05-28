@@ -34,8 +34,8 @@ spec:
             path: /health
             port: {{ .Values.service.port }}
           initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 3
+          periodSeconds: 60
+          timeoutSeconds: 5
           failureThreshold: 3
         resources:
           limits:
@@ -48,7 +48,9 @@ spec:
           httpGet:
             path: /health
             port: {{ .Values.service.port }}
-          periodSeconds: 5
+          initialDelaySeconds: 5
+          periodSeconds: 60
+          timeoutSeconds: 10
       initContainers:
       - name: init-example
         image: registry-1.docker.io/bitnami/postgresql:latest
