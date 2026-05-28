@@ -17,3 +17,7 @@ You may also run ``k8s/cert/make.sh``  to create a custom certificate (for use w
 - Run ``make cicd``
 - Customise and run ``k8s/serviceaccount/make-kubefile.sh``
 - Use the resulting `.yaml` file in a pipeline
+
+## Worker (Redis)
+
+Refreshing the stats subpage will not cause "Handled requests" to go up (since the content is cached)
